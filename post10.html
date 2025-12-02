@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk City - JANIRU.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- කලින් දුන්න Styles මයි (Consistency එකට) --- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+        }
+
+        .logo {
+            color: #ff6600;
+            font-weight: 700;
+            font-size: 1.5em;
+            letter-spacing: 2px;
+        }
+
+        .nav-links a {
+            color: #aaaaaa;
+            margin-left: 30px;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00ccff;
+        }
+
+        /* Content Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Post Content */
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #00ccff;
+            font-weight: 600;
+        }
+
+        .post-title {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .post-meta {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 30px;
+        }
+
+        /* Image Styling */
+        .main-image {
+            width: 55%;
+            height: auto;
+            border-radius: 15px;
+            border: 1px solid #333;
+            margin-bottom: 40px;
+        }
+
+        /* Prompt Box Styling */
+        .prompt-container {
+            background-color: #111;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            margin-bottom: 30px;
+        }
+
+        .prompt-label {
+            color: #ff6600;
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .prompt-text {
+            background: #000;
+            color: #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+            border: 1px solid #222;
+        }
+
+        /* Copy Button */
+        .copy-btn {
+            background-color: #00ccff;
+            color: #000;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1em;
+            font-weight: 700;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+
+        .copy-btn:hover {
+            background-color: #0099cc;
+        }
+
+        .copy-msg {
+            color: #00ff00;
+            margin-left: 10px;
+            opacity: 0;
+            transition: opacity 0.5s;
+            font-size: 0.9em;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid #1f1f1f;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">JANIRU Hansaga</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="blog.html">Blog</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <a href="blog.html" class="back-btn">← Back to Gallery</a>
+
+ 
+ 
+
+        <img src="10.png" alt="Cyberpunk City" class="main-image">
+
+        <div class="prompt-container">
+            <span class="prompt-label">🚀 AI Prompt:</span>
+            <div class="prompt-text" id="aiPrompt">
+                Ultra-realistic vertical photo, 9:16. A young mix Indonesian-Asian man (use uploaded face, 100% identity
+                lock, no alteration) sits on indoor stairs beside a matte concrete wall. A rectangular beam of golden
+                sunlight from a window hits the wall and creates his crisp shadow silhouette inside the bright frame. He
+                wears a black ribbed knit sweater, tapered grey chinos, and chunky white sneakers.aspect ratio 9:16.
+
+                 This is a must-have in the design, without altering or changing the facial features and natural
+                identity of the reference photo. This is extremely important. The facial features in the reference photo
+                and the image you are editing should be at least 99.9% the same
+            </div>
+
+            <button class="copy-btn" onclick="copyPrompt()">Copy Prompt</button>
+            <span class="copy-msg" id="copyMessage">Copied to clipboard!</span>
+        </div>
+
+        <p style="color: #ccc; line-height: 1.8;">
+            Here is a short description about this image. I used Midjourney/Stable Diffusion to create this. The main
+            focus was on the lighting and reflections on the wet road.
+        </p>
+
+    </div>
+
+    <footer>
+        © 2025 Janiru Hansaga. All Rights Reserved.
+    </footer>
+
+    <script>
+        function copyPrompt() {
+            var promptText = document.getElementById("aiPrompt").innerText;
+            navigator.clipboard.writeText(promptText).then(function () {
+                var msg = document.getElementById("copyMessage");
+                msg.style.opacity = "1";
+                setTimeout(function () { msg.style.opacity = "0"; }, 2000);
+            });
+        }
+    </script>
+
+</body>
+
+</html>

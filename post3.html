@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk City - JANIRU.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- කලින් දුන්න Styles මයි (Consistency එකට) --- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+        }
+
+        .logo {
+            color: #ff6600;
+            font-weight: 700;
+            font-size: 1.5em;
+            letter-spacing: 2px;
+        }
+
+        .nav-links a {
+            color: #aaaaaa;
+            margin-left: 30px;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00ccff;
+        }
+
+        /* Content Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Post Content */
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #00ccff;
+            font-weight: 600;
+        }
+
+        .post-title {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .post-meta {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 30px;
+        }
+
+        /* Image Styling */
+        .main-image {
+            width: 55%;
+            height: auto;
+            border-radius: 15px;
+            border: 1px solid #333;
+            margin-bottom: 40px;
+        }
+
+        /* Prompt Box Styling */
+        .prompt-container {
+            background-color: #111;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            margin-bottom: 30px;
+        }
+
+        .prompt-label {
+            color: #ff6600;
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .prompt-text {
+            background: #000;
+            color: #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+            border: 1px solid #222;
+        }
+
+        /* Copy Button */
+        .copy-btn {
+            background-color: #00ccff;
+            color: #000;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1em;
+            font-weight: 700;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+
+        .copy-btn:hover {
+            background-color: #0099cc;
+        }
+
+        .copy-msg {
+            color: #00ff00;
+            margin-left: 10px;
+            opacity: 0;
+            transition: opacity 0.5s;
+            font-size: 0.9em;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid #1f1f1f;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">JANIRU Hansaga</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="blog.html">Blog</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <a href="blog.html" class="back-btn">← Back to Gallery</a>
+
+ 
+
+        <img src="7.png" alt="Cyberpunk City" class="main-image">
+
+        <div class="prompt-container">
+            <span class="prompt-label">🚀 AI Prompt:</span>
+            <div class="prompt-text" id="aiPrompt">
+                Create A hyper-realistic face of the uploaded person (preserve exact real face and body identity, no
+                alterations) High-fidelity, true-to-source facial replication and maintain 100% facial likeness and true
+                identity. Preserve the original person's attached image, face, and physical features. Do not alter their
+                appearance. Apply the following style: A medium shot captures the subject from the chest down to just
+                above the ankles, seated casually on a series of weathered, light grey stone steps, with a slightly
+                high-angle perspective looking down. The subject's torso is angled slightly towards the right, with both
+                legs bent at the knee; the left leg is positioned slightly forward of the right, and the feet rest on
+                the step below. The forearms are relaxed on the thighs, with hands clasped together at waist height,
+                fingers gently intertwined. The head is tilted slightly, and the subject gazes directly at the camera
+                with a gentle, slight smile. The perceived body build is lean and athletic with moderately defined arms.
+                The photography style is modern and sharp, with a clear focus on the subject and a moderate depth of
+                field that softens the background slightly without blurring details excessively. Lighting is natural,
+                soft, and diffused, indicative of midday or early afternoon conditions, originating from the front-side,
+                casting subtle, soft-edged shadows under the jawline, nose, and arms. Highlights are gentle and
+                well-preserved, giving the perceived medium-olive skin tone a natural, healthy appearance. The overall
+                color grading is warm and natural, featuring an earthy palette of browns, creams, and deep maroons, with
+                moderate saturation and contrast. The subject's dark brown hair is styled in short, textured waves,
+                casually swept back from the forehead with some volume. Makeup is natural, reflecting a clean and
+                minimalist aesthetic. The subject wears a short-sleeved, crew-neck t-shirt in a solid, muted camel brown
+                with a soft, matte cotton texture. Paired with this are slim-fit, ankle-length trousers in an off-white
+                or creamy beige color, showing natural folds and wrinkles from the seated position. Brown suede derby
+                shoes with light brown laces and a light beige rand complete the footwear. Accessories include a
+                minimalist wristwatch on the left wrist featuring a round white face, a thin light-colored bezel, and a
+                brown leather strap, along with round-framed sunglasses with dark lenses and a thin, translucent light
+                brown frame. The background features a deep maroon or dark burgundy wooden double door with an ornate
+                decorative element above it to the left, and a light grey stone pillar or architectural element to the
+                right, matching the texture of the steps. The overall vibe is relaxed, confident, and casually
+                stylish.This is a must-have in the design, without altering or changing the facial features and natural
+                identity of the reference photo. This is extremely important. The facial features in the reference photo
+                and the image you are editing should be at least 100% the same
+            </div>
+
+            <button class="copy-btn" onclick="copyPrompt()">Copy Prompt</button>
+            <span class="copy-msg" id="copyMessage">Copied to clipboard!</span>
+        </div>
+
+        <p style="color: #ccc; line-height: 1.8;">
+
+    </div>
+
+    <footer>
+        © 2025 Janiru Hansaga. All Rights Reserved.
+    </footer>
+
+    <script>
+        function copyPrompt() {
+            var promptText = document.getElementById("aiPrompt").innerText;
+            navigator.clipboard.writeText(promptText).then(function () {
+                var msg = document.getElementById("copyMessage");
+                msg.style.opacity = "1";
+                setTimeout(function () { msg.style.opacity = "0"; }, 2000);
+            });
+        }
+    </script>
+
+</body>
+
+</html>
