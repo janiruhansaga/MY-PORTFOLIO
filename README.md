@@ -9,7 +9,7 @@
 ---
 
 ### 🏆 GitHub Trophies
-[![trophies](https://github-profile-trophy.vercel.app/?username=janiruhansaga&theme=tokyonight&no-bg=true&margin-w=15)](https://github.com/ryo-ma/github-profile-trophy)
+[![trophies](https://user-images.githubusercontent.com/6661165/91657958-61b4fd00-eb00-11ea-9def-dc7ef5367e34.png)](https://github.com/ryo-ma/github-profile-trophy)
 
 ---
 
