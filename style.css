@@ -32,7 +32,7 @@ body.dark-mode {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -40,6 +40,11 @@ body {
     color: var(--text-color);
     transition: background 0.3s, color 0.3s;
     overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* =========================================
@@ -85,7 +90,7 @@ nav {
 }
 
 .nav-links a::after {
-    content: '';
+    content: "";
     width: 0;
     height: 2px;
     background: var(--primary-color);
@@ -132,7 +137,7 @@ nav {
     position: absolute;
     right: 0;
     top: 0;
-    transition: .4s;
+    transition: 0.4s;
     border-radius: 34px;
 }
 
@@ -143,16 +148,16 @@ nav {
     height: 18px;
     left: 3px;
     position: absolute;
-    transition: .4s;
+    transition: 0.4s;
     width: 18px;
     border-radius: 50%;
 }
 
-input:checked+.slider {
+input:checked + .slider {
     background-color: var(--primary-color);
 }
 
-input:checked+.slider:before {
+input:checked + .slider:before {
     transform: translateX(26px);
 }
 
@@ -421,8 +426,9 @@ input:checked+.slider:before {
     line-height: 1.6;
 }
 
-
-
+/* =========================================
+   8. MOBILE RESPONSIVENESS (The Fix)
+   ========================================= */
 /* =========================================
    8. MOBILE RESPONSIVENESS (The Fix)
    ========================================= */
@@ -430,28 +436,37 @@ input:checked+.slider:before {
     .hero {
         flex-direction: column-reverse;
         text-align: center;
-        padding-top: 40px;
+        padding-top: 100px;
+        min-height: auto;
+        padding-bottom: 50px;
     }
 
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
+    }
+
+    .hero-content {
+        padding: 0 20px;
     }
 
     .ai-container {
         flex-direction: column;
-        gap: 30px;
+        gap: 50px;
+        padding-top: 50px;
     }
 
     .ai-image-box {
         width: 100%;
         height: auto;
         min-height: 400px;
+        margin-bottom: 20px;
     }
 
-    /* Reset Transforms for Mobile */
+    /* Reset Transforms for Tablet/Mobile */
     .ai-img-main,
     .ai-img-secondary,
     .ai-img-small {
+        position: relative; /* Changed from absolute to flow naturally if needed, or keep absolute with better centering */
         position: absolute;
         left: 50%;
         top: 50%;
@@ -459,43 +474,48 @@ input:checked+.slider:before {
 
     .ai-img-main {
         transform: translate(-50%, -50%);
-        width: 260px;
-        height: 350px;
+        width: 280px;
+        height: 380px;
     }
 
     .ai-img-secondary {
-        transform: translate(-30%, -40%) rotate(5deg);
-        width: 220px;
-        height: 300px;
+        transform: translate(-10%, -40%) rotate(5deg);
+        width: 240px;
+        height: 320px;
+        opacity: 0.8;
     }
 
     .ai-img-small {
-        display: none;
-        /* Hide 3rd image on mobile to save space */
+        display: none; /* Hide 3rd image to save space */
     }
 
     .ai-content-box {
         text-align: center;
+        padding: 0 20px;
     }
 }
 
 @media (max-width: 768px) {
     .hamburger {
         display: block;
+        z-index: 1001; /* Ensure above nav-links */
     }
 
     .nav-links {
         position: fixed;
         right: -100%;
-        top: 70px;
-        height: calc(100vh - 70px);
+        top: 0; /* Full height from top */
+        height: 100vh;
         background: var(--nav-bg);
         flex-direction: column;
+        width: 70%; /* Not full width, slide out drawer style often looks better, or 100% is fine too. Sticking to plan: 100% for simple mobile menu */
         width: 100%;
         text-align: center;
-        padding-top: 50px;
-        transition: 0.4s;
-        backdrop-filter: blur(10px);
+        justify-content: center;
+        padding-top: 0;
+        transition: 0.4s ease-in-out;
+        backdrop-filter: blur(15px);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     }
 
     .nav-links.active {
@@ -503,12 +523,47 @@ input:checked+.slider:before {
     }
 
     .nav-links li {
-        margin: 20px 0;
+        margin: 25px 0;
     }
 
-    .edu-container,
-    .blog-container {
-        grid-template-columns: 1fr;
+    .nav-links a {
+        font-size: 1.2rem; /* Larger touch targets */
+    }
+
+    section {
+        padding: 60px 5% !important; /* Global section padding override */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .ai-img-main {
+        width: 240px;
+        height: 320px;
+    }
+
+    .ai-img-secondary {
+        display: none; /* Simplify further for very small screens */
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+
+    .contact-info, .contact-form {
+        padding: 30px 20px;
+    }
+
+    .about-content h2 {
+        font-size: 2rem;
     }
 }
 
@@ -695,7 +750,7 @@ input:checked+.slider:before {
 
 /* වම් පැත්තේ තියෙන රවුම් මෝස්තරය (Design Element) */
 .contact-info::before {
-    content: '';
+    content: "";
     position: absolute;
     width: 150px;
     height: 150px;
@@ -891,7 +946,7 @@ footer a.admin-link:hover {
     /* පොඩි රවුම් හැඩය */
     font-weight: bold;
     transition: 0.3s;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .page-btn:hover {
