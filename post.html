@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post - JANIRU.</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            /* Default Dark Background */
+            color: #ffffff;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background-color: #111;
+            /* Dark Grey Background */
+            border-bottom: 1px solid #222;
+            transition: background-color 0.3s;
+        }
+
+        /* Logo Style */
+        .logo {
+            color: #ff5500;
+            /* Orange Color */
+            font-weight: 800;
+            /* Extra Bold */
+            font-size: 1.4em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Right Side Container (Links + Toggle) */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        /* Menu Links */
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1em;
+            transition: color 0.3s;
+            text-transform: capitalize;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #00ccff;
+            /* Blue Hover Color */
+        }
+
+        /* Toggle Switch Design */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        /* Checked State (Blue Color - Dark Mode) */
+        input:checked+.slider {
+            background-color: #00ccff;
+            /* Cyan Blue */
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(24px);
+        }
+
+        /* Header */
+        .header-section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        /* Blog Grid */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 80vh;
+            /* Minimum height to keep footer down */
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        /* --- CARD DESIGN --- */
+        .blog-card {
+            background-color: #000;
+            border: 1px solid #222;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s, box-shadow 0.3s;
+            display: flex;
+            /* Changed for JS logic compatibility */
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            border-color: #444;
+        }
+
+        .card-image-wrapper {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .blog-card:hover .card-image {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Tags (Blue Pills) */
+        .tags-container {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background-color: #00aaff;
+            color: #000;
+            font-size: 0.75em;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Titles & Text */
+        .card-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+            line-height: 1.3;
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        .card-excerpt {
+            color: #aaa;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        /* Separator Line (Dashed) */
+        .separator {
+            border: 0;
+            border-top: 1px dashed #333;
+            margin: 0 0 20px 0;
+        }
+
+        /* Footer (Author & Date) */
+        .card-footer {
+            display: flex;
+            align-items: center;
+            font-size: 0.85em;
+            color: #888;
+            font-weight: 500;
+        }
+
+        .author-name {
+            color: #ccc;
+            margin-right: 10px;
+        }
+
+        .divider {
+            margin: 0 10px;
+            color: #444;
+        }
+
+        /* Footer Main */
+        footer {
+            text-align: center;
+            padding: 40px;
+            margin-top: 50px;
+            border-top: 1px solid #222;
+            color: #444;
+            font-size: 0.8em;
+        }
+
+        /* Pagination Styles */
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+
+        .page-btn {
+            background-color: #111;
+            color: #fff;
+            border: 1px solid #333;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .page-btn:hover {
+            background-color: #222;
+            border-color: #444;
+        }
+
+        .page-btn.active {
+            background-color: #00ccff;
+            color: #000;
+            border-color: #00ccff;
+        }
+
+        /* --- LIGHT MODE STYLES --- */
+        body.light-mode {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* Navbar Light Mode */
+        body.light-mode .navbar {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+        }
+
+        body.light-mode .nav-links a {
+            color: #333;
+        }
+
+        body.light-mode .nav-links a:hover,
+        body.light-mode .nav-links a.active {
+            color: #0056b3;
+        }
+
+        /* Blog Card Light Mode */
+        body.light-mode .blog-card {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        body.light-mode .blog-card:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            border-color: #ccc;
+        }
+
+        /* Texts Light Mode */
+        body.light-mode .card-title {
+            color: #000;
+        }
+
+        body.light-mode .header-section p,
+        body.light-mode .card-excerpt,
+        body.light-mode .card-footer {
+            color: #555;
+        }
+
+        body.light-mode .separator {
+            border-top: 1px dashed #ccc;
+        }
+
+        body.light-mode .author-name {
+            color: #333;
+        }
+
+        body.light-mode footer {
+            border-top: 1px solid #ddd;
+            color: #666;
+        }
+
+        body.light-mode .page-btn {
+            background-color: #fff;
+            color: #333;
+            border-color: #ddd;
+        }
+
+        body.light-mode .page-btn:hover {
+            background-color: #f1f1f1;
+        }
+
+        body.light-mode .page-btn.active {
+            background-color: #0056b3;
+            color: #fff;
+            border-color: #0056b3;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="https://janiruhansaga.com" class="logo" style="text-decoration:none;">JANIRU HANSAGA</a>
+
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="prompt.html">Prompt</a>
+                <a href="post.html" class="active">Post</a>
+                <a href="janiruonline.html">MY tool</a>
+                <a href="download.html">Download</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <label class="switch">
+                <input type="checkbox" id="modeToggle" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+    </nav>
+
+    <div class="header-section">
+        <h1 style="text-align: center;">Latest Posts</h1>
+        <p style="text-align: center;">Explore my latest thoughts and ideas.</p>
+    </div>
+
+    <div class="container">
+        <div class="blog-grid" id="blogGrid">
+
+            <a href="article-1.html" class="blog-card">
+                <div class="card-image-wrapper">
+                    <img src="thumbnails/article-1.png" alt="The Robot Takeover? Not So Fast!" class="card-image">
+                </div>
+                <div class="card-content">
+                    <div class="tags-container">
+                        <span class="tag">Blog</span>
+                        <span class="tag">Tech</span>
+                    </div>
+                    <h2 class="card-title">The Robot Takeover? Not So Fast!</h2>
+                    <p class="card-excerpt">
+                        How AI is Reshaping Your Future Job into a Collaborative Masterpiece.
+                    </p>
+                    <hr class="separator">
+                    <div class="card-footer">
+                        <span class="author-name">Janiru Hansaga</span>
+                        <span class="divider">/</span>
+                        <span>Oct 2023</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="article-2.html" class="blog-card">
+                <div class="card-image-wrapper">
+                    <img src="thumbnails/article-2.png" alt="AI in Cybersecurity" class="card-image">
+                </div>
+                <div class="card-content">
+                    <div class="tags-container">
+                        <span class="tag">Blog</span>
+                        <span class="tag">Tech</span>
+                    </div>
+                    <h2 class="card-title">AI in Cybersecurity</h2>
+                    <p class="card-excerpt">
+                        Exploring the evolving role of Artificial Intelligence: from historical development to the
+                        future trajectory of digital defense.
+                    </p>
+                    <hr class="separator">
+                    <div class="card-footer">
+                        <span class="author-name">Janiru Hansaga</span>
+                        <span class="divider">/</span>
+                        <span>Oct 2023</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="article-3.html" class="blog-card">
+                <div class="card-image-wrapper">
+                    <img src="thumbnails/article-3.png" alt="The AI Guardian: Friend or Foe?" class="card-image">
+                </div>
+                <div class="card-content">
+                    <div class="tags-container">
+                        <span class="tag">Blog</span>
+                        <span class="tag">Tech</span>
+                    </div>
+                    <h2 class="card-title">The AI Guardian: Friend or Foe?</h2>
+                    <p class="card-excerpt">
+                        Navigating the high-stakes evolution of artificial intelligence in the modern cyber
+                        battlefield.
+                    </p>
+                    <hr class="separator">
+                    <div class="card-footer">
+                        <span class="author-name">Janiru Hansaga</span>
+                        <span class="divider">/</span>
+                        <span>Oct 2023</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="article-4.html" class="blog-card">
+                <div class="card-image-wrapper">
+                    <img src="thumbnails/article-4.png" alt="Cross-Platform Frameworks" class="card-image">
+                </div>
+                <div class="card-content">
+                    <div class="tags-container">
+                        <span class="tag">Blog</span>
+                        <span class="tag">Tech</span>
+                    </div>
+                    <h2 class="card-title">Cross-Platform Frameworks</h2>
+                    <p class="card-excerpt">
+                        A comprehensive journey through Quasar, Electron, and Flutter. Navigating the origins,
+                        evolution, and future of multi-platform development.
+                    </p>
+                    <hr class="separator">
+                    <div class="card-footer">
+                        <span class="author-name">Janiru Hansaga</span>
+                        <span class="divider">/</span>
+                        <span>Oct 2023</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="article-5.html" class="blog-card">
+                <div class="card-image-wrapper">
+                    <img src="thumbnails/article-5.png" alt="AI කියන්නේ මොකක්ද ඇත්තටම? අතීතය, වර්තමානය සහ අනාගතය!"
+                        class="card-image">
+                </div>
+                <div class="card-content">
+                    <div class="tags-container">
+                        <span class="tag">Blog</span>
+                        <span class="tag">Tech</span>
+                    </div>
+                    <h2 class="card-title">AI කියන්නේ මොකක්ද ඇත්තටම? අතීතය, වර්තමානය සහ අනාගතය!</h2>
+                    <p class="card-excerpt">
+                        Hi AI Friends! කෘතිම බුද්ධිය (AI) ගැන හැමතැනම කතා වෙනවා නේද? අද අපි AI ගැන සරලව තේරුම් ගමු.
+                    </p>
+                    <hr class="separator">
+                    <div class="card-footer">
+                        <span class="author-name">Janiru Hansaga</span>
+                        <span class="divider">/</span>
+                        <span>Oct 2023</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="article-6.html" class="blog-card">
+                <div class="card-image-wrapper">
+                    <img src="thumbnails/article-6.png"
+                        alt="AI මායාවෙන් වැඩ පහසු කරගමු: ChatGPT සහ Gemini සමග ඔබේ දෛනික කර්තව්‍යයන් සුපිරි ලෙස සරල කරගන්න!"
+                        class="card-image">
+                </div>
+                <div class="card-content">
+                    <div class="tags-container">
+                        <span class="tag">Blog</span>
+                        <span class="tag">Tech</span>
+                    </div>
+                    <h2 class="card-title">AI මායාවෙන් වැඩ පහසු කරගමු: ChatGPT සහ Gemini සමග ඔබේ දෛනික කර්තව්‍යයන්
+                        සුපිරි ලෙස සරල කරගන්න!</h2>
+                    <p class="card-excerpt">
+                        වැඩ කඳු ගැහිලාද? අලුත් සහයකයන් දෙන්නෙක් එක්ක ඔබේ ජීවිතය වෙනස් කරගන්නා ආකාරය දැනගන්න.
+                    </p>
+                    <hr class="separator">
+                    <div class="card-footer">
+                        <span class="author-name">Janiru Hansaga</span>
+                        <span class="divider">/</span>
+                        <span>Oct 2023</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="article-7.html" class="blog-card">
+                <div class="card-image-wrapper">
+                    <img src="thumbnails/article-7.png" alt="AI වලින් අපේ ඉගෙනුම තවත් ලස්සන කරගන්න පුළුවන් මේ විදි 5!"
+                        class="card-image">
+                </div>
+                <div class="card-content">
+                    <div class="tags-container">
+                        <span class="tag">Blog</span>
+                        <span class="tag">Tech</span>
+                    </div>
+                    <h2 class="card-title">AI වලින් අපේ ඉගෙනුම තවත් ලස්සන කරගන්න පුළුවන් මේ විදි 5!</h2>
+                    <p class="card-excerpt">
+                        "5 ways AI can make our learning even more beautiful!"
+                    </p>
+                    <hr class="separator">
+                    <div class="card-footer">
+                        <span class="author-name">Janiru Hansaga</span>
+                        <span class="divider">/</span>
+                        <span>Oct 2023</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="article-8.html" class="blog-card">
+                <div class="card-image-wrapper">
+                    <img src="thumbnails/article-8.png" alt="AI Power-Up:The New Creative Frontier" class="card-image">
+                </div>
+                <div class="card-content">
+                    <div class="tags-container">
+                        <span class="tag">Blog</span>
+                        <span class="tag">Tech</span>
+                    </div>
+                    <h2 class="card-title">AI Power-Up:The New Creative Frontier</h2>
+                    <p class="card-excerpt">
+                        Exploring the transformative impact of Artificial Intelligence on content creation—from
+                        boosting productivity to redefining the boundaries of human...
+                    </p>
+                    <hr class="separator">
+                    <div class="card-footer">
+                        <span class="author-name">Janiru Hansaga</span>
+                        <span class="divider">/</span>
+                        <span>Oct 2023</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="article-9.html" class="blog-card">
+                <div class="card-image-wrapper">
+                    <img src="thumbnails/article-9.png" alt="The AI Ethical Tightrope: Navigating the " Shoulds"
+                        and "Shouldn'ts"" class=" card-image">
+                </div>
+                <div class="card-content">
+                    <div class="tags-container">
+                        <span class="tag">Blog</span>
+                        <span class="tag">Tech</span>
+                    </div>
+                    <h2 class="card-title">The AI Ethical Tightrope: Navigating the "Shoulds" and "Shouldn'ts"</h2>
+                    <p class="card-excerpt">
+                        AI Research Desk
+                    </p>
+                    <hr class="separator">
+                    <div class="card-footer">
+                        <span class="author-name">Janiru Hansaga</span>
+                        <span class="divider">/</span>
+                        <span>Oct 2023</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="article-10.html" class="blog-card">
+                <div class="card-image-wrapper">
+                    <img src="thumbnails/article-10.png" alt="Grok-2: Elon's Unfiltered AI Takes on the World"
+                        class="card-image">
+                </div>
+                <div class="card-content">
+                    <div class="tags-container">
+                        <span class="tag">Blog</span>
+                        <span class="tag">Tech</span>
+                    </div>
+                    <h2 class="card-title">Grok-2: Elon's Unfiltered AI Takes on the World</h2>
+                    <p class="card-excerpt">
+                        The relentless march of artificial intelligence continues unabated. From simple chatbots to
+                        the cusp of AGI, xAI's Grok-2 emerges as a bold, rebell...
+                    </p>
+                    <hr class="separator">
+                    <div class="card-footer">
+                        <span class="author-name">Janiru Hansaga</span>
+                        <span class="divider">/</span>
+                        <span>Oct 2023</span>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="pagination-container" id="pagination">
+        </div>
+    </div>
+
+    <footer>
+        <p>
+            &copy; 2025 Janiru Hansaga. All Rights Reserved.
+            <a href="admin.html" class="admin-link"><i class="fa-solid fa-lock"></i> Admin</a>
+        </p>
+    </footer>
+
+    <script>
+        // --- 1. DARK/LIGHT MODE LOGIC ---
+        const toggleSwitch = document.getElementById('modeToggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme === 'light') {
+            body.classList.add('light-mode');
+            toggleSwitch.checked = false;
+        } else {
+            body.classList.remove('light-mode');
+            toggleSwitch.checked = true;
+        }
+
+        toggleSwitch.addEventListener('change', function () {
+            if (this.checked) {
+                body.classList.remove('light-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.add('light-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // --- 2. PAGINATION LOGIC ---
+        document.addEventListener('DOMContentLoaded', function () {
+            const cards = document.querySelectorAll('.blog-card');
+            const paginationContainer = document.getElementById('pagination');
+
+            // SETTINGS: Change this number to show more/less posts per page
+            const itemsPerPage = 18;
+
+            let currentPage = 1;
+
+            // Function to show/hide cards based on page number
+            function showPage(page) {
+                const startIndex = (page - 1) * itemsPerPage;
+                const endIndex = startIndex + itemsPerPage;
+
+                cards.forEach((card, index) => {
+                    if (index >= startIndex && index < endIndex) {
+                        card.style.display = 'flex'; // Show
+                    } else {
+                        card.style.display = 'none'; // Hide
+                    }
+                });
+            }
+
+            // Function to create pagination buttons
+            function createPaginationButtons() {
+                const totalPages = Math.ceil(cards.length / itemsPerPage);
+                paginationContainer.innerHTML = ''; // Clear existing buttons
+
+                // Don't show pagination if there's only 1 page
+                if (totalPages <= 1) return;
+
+                for (let i = 1; i <= totalPages; i++) {
+                    const btn = document.createElement('button');
+                    btn.innerText = i;
+                    btn.classList.add('page-btn');
+
+                    if (i === currentPage) {
+                        btn.classList.add('active');
+                    }
+
+                    btn.addEventListener('click', () => {
+                        currentPage = i;
+                        showPage(currentPage);
+
+                        // Update active state
+                        document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+
+                        // Optional: Scroll to top of grid when changing pages
+                        document.getElementById('blogGrid').scrollIntoView({ behavior: 'smooth' });
+                    });
+
+                    paginationContainer.appendChild(btn);
+                }
+            }
+
+            // Initialize
+            showPage(currentPage);
+            createPaginationButtons();
+        });
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="music.js"></script>
+</body>
+
+</html>
