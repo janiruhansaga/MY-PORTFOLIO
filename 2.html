@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local AI Workstation Guide - JANIRU.</title>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Grotesk:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind (for internal component styling) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        mono: ['Space Grotesk', 'monospace'],
+                    },
+                    colors: {
+                        dark: {
+                            bg: '#000000',
+                            card: '#111111',
+                            border: '#333333',
+                            text: '#ffffff',
+                            muted: '#aaaaaa'
+                        },
+                        accent: {
+                            primary: '#00ccff', // Cyan
+                            secondary: '#ff6600', // Orange
+                            success: '#00ff00', // Green
+                            teal: '#2dd4bf',
+                            coral: '#fb7185',
+                            gold: '#fbbf24'
+                        }
+                    }
+                }
+            },
+            // Reduce Tailwind's reset impact on global styles if necessary, 
+            // but for a full rewrite using Tailwind is easier.
+            corePlugins: {
+                preflight: true, // we might want this for the complex components
+            }
+        }
+    </script>
+
+    <!-- Chart Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+    <style>
+        /* --- Styles from post1.html (Global Theme) --- */
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            border-bottom: 1px solid #1f1f1f;
+        }
+
+        .logo {
+            color: #ff6600;
+            font-weight: 700;
+            font-size: 1.5em;
+            letter-spacing: 2px;
+        }
+
+        .nav-links a {
+            color: #aaaaaa;
+            margin-left: 30px;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00ccff;
+        }
+
+        /* Content Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Nav Buttons */
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #00ccff;
+            font-weight: 600;
+        }
+
+        /* Typography Override for Article */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+        }
+
+        p {
+            color: #ddd;
+            line-height: 1.8;
+        }
+
+        /* Custom Components specific to this guide */
+        .tech-card {
+            background-color: #111;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .tech-card:hover {
+            border-color: #00ccff;
+        }
+
+        .range-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 4px;
+            background: #333;
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #00ccff;
+            cursor: pointer;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 350px;
+            width: 100%;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid #1f1f1f;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav class="navbar">
+        <a href="https://janiruhansaga.com" class="logo">JANIRU Hansaga</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="prompt.html">Prompt</a>
+            <a href="post.html">Post</a>
+            <a href="google-opal.html">GOOGLE OPAL</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- HEADER -->
+        <a href="post.html" class="back-btn">← Back to Posts</a>
+
+        <header class="mb-12 text-center">
+            <span
+                class="inline-block px-3 py-1 mb-4 text-xs font-bold tracking-wider text-accent-primary uppercase border border-accent-primary rounded-full">Guide</span>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Local AI Workstation Guide</h1>
+            <p class="text-xl text-gray-400">Running Ollama & Claude-Class Models Locally</p>
+            <div class="flex justify-center items-center mt-6 text-sm text-gray-500">
+                <span class="mr-4">By Janiru Hansaga</span>
+                <span>•</span>
+                <span class="ml-4">Feb 2026</span>
+            </div>
+        </header>
+
+
+
+        <!-- CONTENT Start -->
+
+        <!-- 1. INTRO -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 text-accent-primary">The Shift to Local</h2>
+            <p class="mb-4">
+                Transitioning from cloud-based models (like Claude 3.5 Sonnet) to local execution via Ollama offers a
+                paradigm shift in development workflows.
+                Data privacy, zero latency, and cost elimination are the primary drivers.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+                <div class="tech-card text-center">
+                    <div class="text-3xl mb-2">🔒</div>
+                    <div class="font-bold text-white mb-1">Privacy</div>
+                    <div class="text-sm text-gray-400">100% Offline</div>
+                </div>
+                <div class="tech-card text-center">
+                    <div class="text-3xl mb-2">⚡</div>
+                    <div class="font-bold text-white mb-1">Latency</div>
+                    <div class="text-sm text-gray-400">~0ms Network</div>
+                </div>
+                <div class="tech-card text-center">
+                    <div class="text-3xl mb-2">💎</div>
+                    <div class="font-bold text-white mb-1">Cost</div>
+                    <div class="text-sm text-gray-400">Free Inference</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. HARDWARE CALCULATOR -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 text-accent-primary">Compatibility Engine</h2>
+            <p class="mb-8">Use this tool to check if your rig can handle the latest open-weights.</p>
+
+            <div class="tech-card">
+                <h3 class="text-xl font-bold mb-6">System Configurator</h3>
+
+                <div class="mb-8">
+                    <div class="flex justify-between mb-2">
+                        <label class="font-bold text-gray-300">GPU VRAM</label>
+                        <span class="text-accent-primary font-mono font-bold" id="vramDisplay">8GB</span>
+                    </div>
+                    <input type="range" id="vramInput" min="0" max="48" step="2" value="8" class="range-slider">
+                    <div class="flex justify-between text-xs text-gray-600 mt-1 font-mono">
+                        <span>0GB</span>
+                        <span>24GB</span>
+                        <span>48GB+</span>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <div class="flex justify-between mb-2">
+                        <label class="font-bold text-gray-300">System RAM</label>
+                        <span class="text-white font-mono font-bold" id="ramDisplay">16GB</span>
+                    </div>
+                    <input type="range" id="ramInput" min="4" max="128" step="4" value="16" class="range-slider">
+                    <div class="flex justify-between text-xs text-gray-600 mt-1 font-mono">
+                        <span>4GB</span>
+                        <span>128GB</span>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-black border border-dark-border rounded-lg mb-6">
+                    <div class="text-xs text-gray-500 uppercase font-bold mb-1">Estimated Speed</div>
+                    <div id="speedEstimate" class="text-xl font-bold text-white">Calculating...</div>
+                </div>
+
+                <div class="border-t border-dark-border pt-6">
+                    <h4 class="font-bold text-white mb-4">Recommended Models:</h4>
+                    <div id="modelRecommendations" class="space-y-3">
+                        <!-- JS Populated -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. BENCHMARKS -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 text-accent-primary">Performance Lab</h2>
+            <p class="mb-6">Local vs Cloud. Comparing DeepSeek V2 (Local) against Claude 3.5 Sonnet (Cloud).</p>
+
+            <div class="flex space-x-2 mb-6 overflow-x-auto pb-2">
+                <button onclick="updateRadar('all')"
+                    class="px-4 py-2 rounded-full bg-dark-border hover:bg-gray-800 text-sm transition">All
+                    Metrics</button>
+                <button onclick="updateRadar('code')"
+                    class="px-4 py-2 rounded-full bg-dark-border hover:bg-gray-800 text-sm transition">Coding</button>
+                <button onclick="updateRadar('logic')"
+                    class="px-4 py-2 rounded-full bg-dark-border hover:bg-gray-800 text-sm transition">Logic</button>
+            </div>
+
+            <div class="tech-card bg-white/5">
+                <div class="chart-wrapper">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </div>
+
+            <div class="tech-card mt-8">
+                <h3 class="text-lg font-bold mb-4">Memory Anatomy</h3>
+                <div class="chart-wrapper">
+                    <div id="plotlyMemoryDiv" style="width:100%;height:100%;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. SETUP STEPS -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 text-accent-primary">Setup Protocol</h2>
+
+            <div class="relative border-l border-gray-800 ml-4 space-y-12">
+                <!-- Step 1 -->
+                <div class="relative pl-8">
+                    <div class="absolute -left-1.5 top-1 w-3 h-3 rounded-full bg-accent-primary"></div>
+                    <h3 class="text-xl font-bold text-white mb-2">1. Install Core Engine</h3>
+                    <p class="mb-3 text-sm">Install Ollama to handle model runtime.</p>
+                    <code
+                        class="block bg-black border border-dark-border p-3 rounded text-accent-primary font-mono text-sm overflow-x-auto">curl -fsSL https://ollama.com/install.sh | sh</code>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative pl-8">
+                    <div class="absolute -left-1.5 top-1 w-3 h-3 rounded-full bg-gray-600"></div>
+                    <h3 class="text-xl font-bold text-white mb-2">2. Acquisition</h3>
+                    <p class="mb-3 text-sm">Pull DeepSeek Coder V2 (Lite).</p>
+                    <code
+                        class="block bg-black border border-dark-border p-3 rounded text-accent-secondary font-mono text-sm overflow-x-auto">ollama pull deepseek-coder-v2</code>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative pl-8">
+                    <div class="absolute -left-1.5 top-1 w-3 h-3 rounded-full bg-gray-600"></div>
+                    <h3 class="text-xl font-bold text-white mb-2">3. IDE Integration</h3>
+                    <p class="mb-3 text-sm">Configure 'Continue' extension in VS Code.</p>
+                    <pre
+                        class="bg-black border border-dark-border p-3 rounded font-mono text-xs text-gray-400 overflow-x-auto">
+"models": [
+  {
+    "title": "Local DeepSeek",
+    "provider": "ollama",
+    "model": "deepseek-coder-v2"
+  }
+]</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTENT End -->
+    </div>
+
+    <footer>
+        © 2026 Janiru Hansaga. All Rights Reserved.
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // --- Hardware Calculator Logic ---
+        const vramInput = document.getElementById('vramInput');
+        const ramInput = document.getElementById('ramInput');
+
+        function updateCalculator() {
+            const vram = parseInt(vramInput.value);
+            const ram = parseInt(ramInput.value);
+
+            document.getElementById('vramDisplay').textContent = vram + "GB";
+            document.getElementById('ramDisplay').textContent = ram + "GB";
+
+            const container = document.getElementById('modelRecommendations');
+            container.innerHTML = '';
+
+            let models = [];
+            if (vram >= 4) models.push({ name: "Llama 3 8B (Q4)", req: "4.5GB VRAM", tier: "Entry" });
+            if (vram >= 8) models.push({ name: "DeepSeek Coder 6.7B", req: "7GB VRAM", tier: "Standard" });
+            if (vram >= 12) models.push({ name: "Llama 3 8B (FP16)", req: "11GB VRAM", tier: "High Precision" });
+            if (vram >= 16) models.push({ name: "DeepSeek Coder V2 Lite (16B)", req: "14GB VRAM", tier: "Advanced" });
+            if (vram >= 24) models.push({ name: "CodeLlama 34B", req: "22GB VRAM", tier: "Pro" });
+            if (vram >= 40) models.push({ name: "Llama 3 70B (Q4)", req: "38GB VRAM", tier: "Ultra" });
+
+            if (models.length === 0) {
+                container.innerHTML = `<div class="text-red-500 text-sm">Insufficient specific hardware for pure GPU offloading.</div>`;
+            } else {
+                models.forEach(m => {
+                    const el = document.createElement('div');
+                    el.className = 'flex justify-between items-center p-3 bg-black rounded border border-dark-border';
+                    el.innerHTML = `
+                        <div>
+                            <span class="font-bold text-gray-200 block text-sm">${m.name}</span>
+                            <span class="text-xs text-gray-500">${m.req}</span>
+                        </div>
+                        <span class="px-2 py-1 bg-gray-900 border border-gray-700 rounded text-xs text-gray-300">${m.tier}</span>
+                    `;
+                    container.appendChild(el);
+                });
+            }
+
+            const speedEl = document.getElementById('speedEstimate');
+            if (vram < 6 && ram < 16) {
+                speedEl.textContent = "Unusable";
+                speedEl.className = "text-xl font-bold text-red-500";
+            } else if (vram >= 24) {
+                speedEl.textContent = "Lightning (50+ t/s)";
+                speedEl.className = "text-xl font-bold text-accent-teal";
+            } else if (vram >= 12) {
+                speedEl.textContent = "Smooth (20-30 t/s)";
+                speedEl.className = "text-xl font-bold text-accent-gold";
+            } else {
+                speedEl.textContent = "Acceptable (10-15 t/s)";
+                speedEl.className = "text-xl font-bold text-gray-400";
+            }
+        }
+
+        vramInput.addEventListener('input', updateCalculator);
+        ramInput.addEventListener('input', updateCalculator);
+        updateCalculator();
+
+        // --- Chart Config ---
+        document.addEventListener('DOMContentLoaded', () => {
+            Chart.defaults.font.family = "'Poppins', sans-serif";
+            Chart.defaults.color = '#888';
+            Chart.defaults.borderColor = '#333';
+
+            // Radar Chart
+            const ctx = document.getElementById('radarChart').getContext('2d');
+            window.radarChartInstance = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Python', 'Logic', 'SQL', 'Explain', 'Refactor', 'Speed'],
+                    datasets: [
+                        {
+                            label: 'DeepSeek (Local)',
+                            data: [92, 85, 88, 80, 78, 95],
+                            backgroundColor: 'rgba(45, 212, 191, 0.2)', // Teal
+                            borderColor: '#2dd4bf',
+                            pointBackgroundColor: '#2dd4bf'
+                        },
+                        {
+                            label: 'Claude 3.5 (Cloud)',
+                            data: [95, 96, 92, 98, 95, 60],
+                            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                            borderColor: '#666',
+                            borderDash: [5, 5],
+                            pointBackgroundColor: '#666'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: '#333' },
+                            grid: { color: '#333' },
+                            pointLabels: { color: '#aaa', font: { size: 12 } },
+                            ticks: { backdropColor: 'transparent', display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { labels: { color: '#ddd' } }
+                    }
+                }
+            });
+
+            // Plotly Donut
+            const data = [{
+                values: [65, 25, 10],
+                labels: ['Model Weights', 'KV Cache', 'System Overhead'],
+                type: 'pie',
+                hole: .6,
+                marker: {
+                    colors: ['#222', '#00ccff', '#444']
+                },
+                textinfo: 'label+percent',
+                textposition: 'outside',
+                automargin: true,
+                textfont: { color: '#ddd' }
+            }];
+
+            const layout = {
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                showlegend: false,
+                margin: { t: 20, b: 20, l: 20, r: 20 },
+                font: { family: 'Poppins, sans-serif', color: '#fff' },
+                annotations: [{
+                    font: { size: 14, color: '#fff', weight: 'bold' },
+                    showarrow: false,
+                    text: 'RAM<br>USAGE',
+                    x: 0.5, y: 0.5
+                }]
+            };
+
+            Plotly.newPlot('plotlyMemoryDiv', data, layout, { displayModeBar: false, responsive: true });
+        });
+
+        function updateRadar(mode) {
+            const chart = window.radarChartInstance;
+
+            if (mode === 'code') {
+                chart.data.datasets[0].data = [95, 80, 92, 70, 75, 98];
+                chart.data.datasets[1].data = [96, 90, 94, 95, 92, 60];
+            } else if (mode === 'logic') {
+                chart.data.datasets[0].data = [80, 88, 80, 85, 82, 90];
+                chart.data.datasets[1].data = [92, 98, 90, 99, 97, 55];
+            } else {
+                chart.data.datasets[0].data = [92, 85, 88, 80, 78, 95];
+                chart.data.datasets[1].data = [95, 96, 92, 98, 95, 60];
+            }
+            chart.update();
+        }
+    </script>
+</body>
+
+</html>
