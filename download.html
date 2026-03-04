@@ -14,7 +14,8 @@
             padding: 80px 10%;
             min-height: 90vh;
             display: flex;
-            align-items: center;
+            align-items: stretch;
+            align-content: center;
             justify-content: center;
             flex-wrap: wrap;
             gap: 40px;
@@ -30,6 +31,8 @@
             max-width: 450px;
             width: 100%;
             text-align: center;
+            display: flex;
+            flex-direction: column;
         }
 
         .download-icon {
@@ -47,6 +50,7 @@
             color: var(--sub-text);
             margin-bottom: 40px;
             line-height: 1.6;
+            flex-grow: 1;
         }
     </style>
 </head>
@@ -105,6 +109,21 @@
                 <br>Version: 1.0.0
             </p>
             <a href="safebox Setup 1.0.0.exe" class="btn" download>Download Now</a>
+        </div>
+
+        <div class="download-container">
+            <div class="download-icon">
+                <img src="logo image.png" alt="Phone Extractor Logo"
+                    style="width: 150px; height: 150px; object-fit: contain; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+            </div>
+            <h2 class="download-title">Download <span class="highlight">Phone Extractor</span></h2>
+            <p class="download-desc">
+                A powerful tool designed to effortlessly extract WhatsApp numbers. Simply provide screenshots containing
+                WhatsApp numbers, and the tool will instantly extract and compile them into a neatly organized Excel
+                file for you.
+                <br>Version: 1.0.0
+            </p>
+            <a href="Phone Number Extractor Setup 1.0.0.exe" class="btn" download>Download Now</a>
         </div>
     </section>
 
