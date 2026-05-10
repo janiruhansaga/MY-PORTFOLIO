@@ -5,6 +5,8 @@
     --primary-color: #00d2ff;
     --logo-color: #ff4500;
     --name-color: #00d2ff;
+    --neon-green: #39ff14;
+    --metallic: #2a2a2a;
 
     /* Light Mode */
     --bg-color: #f0f2f5;
@@ -35,11 +37,15 @@ body.dark-mode {
     font-family: "Poppins", sans-serif;
 }
 
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 body {
     background: var(--gradient-bg);
     color: var(--text-color);
     transition: background 0.3s, color 0.3s;
-    overflow-x: hidden;
 }
 
 img {
@@ -107,8 +113,14 @@ nav {
 .hamburger {
     display: none;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 28px;
     color: var(--text-color);
+    padding: 5px;
+    transition: 0.3s;
+}
+
+.hamburger:hover {
+    color: var(--primary-color);
 }
 
 /* Dark Mode Switcher */
@@ -362,7 +374,7 @@ input:checked + .slider:before {
 
 .edu-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
 }
 
@@ -474,14 +486,16 @@ input:checked + .slider:before {
 
     .ai-img-main {
         transform: translate(-50%, -50%);
-        width: 280px;
-        height: 380px;
+        width: 90%;
+        max-width: 280px;
+        height: auto;
     }
 
     .ai-img-secondary {
         transform: translate(-10%, -40%) rotate(5deg);
-        width: 240px;
-        height: 320px;
+        width: 80%;
+        max-width: 240px;
+        height: auto;
         opacity: 0.8;
     }
 
@@ -495,6 +509,16 @@ input:checked + .slider:before {
     }
 }
 
+/* Tablet Navbar Fix */
+@media (max-width: 1100px) and (min-width: 769px) {
+    .nav-links {
+        gap: 15px;
+    }
+    .nav-links a {
+        font-size: 14px;
+    }
+}
+
 @media (max-width: 768px) {
     .hamburger {
         display: block;
@@ -503,23 +527,25 @@ input:checked + .slider:before {
 
     .nav-links {
         position: fixed;
-        right: -100%;
+        right: 0;
         top: 0; /* Full height from top */
         height: 100vh;
         background: var(--nav-bg);
         flex-direction: column;
-        width: 70%; /* Not full width, slide out drawer style often looks better, or 100% is fine too. Sticking to plan: 100% for simple mobile menu */
         width: 100%;
         text-align: center;
         justify-content: center;
-        padding-top: 0;
-        transition: 0.4s ease-in-out;
+        padding: 20px;
+        transition: transform 0.4s ease-in-out, visibility 0.4s;
         backdrop-filter: blur(15px);
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transform: translateX(100%);
+        visibility: hidden;
+        z-index: 1000;
     }
 
     .nav-links.active {
-        right: 0;
+        transform: translateX(0);
+        visibility: visible;
     }
 
     .nav-links li {
@@ -536,17 +562,26 @@ input:checked + .slider:before {
 }
 
 @media (max-width: 480px) {
+    nav {
+        padding: 15px 20px;
+    }
+
     .hero h1 {
         font-size: 2.2rem;
     }
 
     .logo {
-        font-size: 20px;
+        font-size: 18px;
+    }
+    
+    .about-container {
+        padding: 20px;
     }
 
     .ai-img-main {
-        width: 240px;
-        height: 320px;
+        width: 100%;
+        max-width: 240px;
+        height: auto;
     }
 
     .ai-img-secondary {
@@ -599,7 +634,8 @@ input:checked + .slider:before {
 .about-img-wrapper {
     flex: 1;
     position: relative;
-    min-width: 300px;
+    width: 100%;
+    max-width: 500px;
 }
 
 .about-img-wrapper img {
@@ -966,4 +1002,70 @@ footer a.admin-link:hover {
 .page-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+}
+
+/* =========================================
+   SOCIAL HACKER SECTION
+   ========================================= */
+.social-hacker-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 60px 5%;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(5px);
+    border-top: 1px solid rgba(57, 255, 20, 0.2);
+    border-bottom: 1px solid rgba(57, 255, 20, 0.2);
+    flex-wrap: wrap;
+    margin: 40px 0;
+}
+
+.social-hacker-link {
+    font-size: 2.5rem;
+    color: var(--metallic);
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+}
+
+.social-hacker-link:hover {
+    color: var(--neon-green);
+    transform: translateY(-10px) scale(1.2);
+    filter: drop-shadow(0 0 10px var(--neon-green)) drop-shadow(0 0 20px var(--neon-green));
+}
+
+.social-hacker-link::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    transition: 0.4s;
+    top: 0;
+    left: 0;
+}
+
+.social-hacker-link:hover::after {
+    border-color: var(--neon-green);
+    box-shadow: 0 0 15px var(--neon-green);
+    transform: scale(1.1);
+}
+
+@media (max-width: 480px) {
+    .social-hacker-container {
+        gap: 25px;
+        padding: 40px 5%;
+    }
+    .social-hacker-link {
+        font-size: 2rem;
+        width: 50px;
+        height: 50px;
+    }
 }
