@@ -383,29 +383,15 @@
 </head>
 
 <body>
+    <!-- Magical Energy Background Elements -->
+    <div class="magical-energy energy-1"></div>
+    <div class="magical-energy energy-2"></div>
+    <div class="magical-energy energy-3"></div>
+    <div class="magical-energy energy-4"></div>
+<main id="main-content">
 
-    <nav class="navbar">
-        <a href="https://janiruhansaga.com" class="logo" style="text-decoration:none;">JANIRU HANSAGA</a>
 
-        <div class="nav-right">
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="prompt.html" class="active">Prompt</a>
-                <a href="post.html">Post</a>
-                <a href="janiruonline.html">MY tool</a>
-                <a href="google-opal.html">GOOGLE OPAL</a>
-                <a href="https://janiruhansaga.github.io/CARGAME.3D/">Game</a>
-                <a href="download.html">Download</a>
-                <a href="contact.html">Contact</a>
-            </div>
-
-            <label class="switch">
-                <input type="checkbox" id="modeToggle" checked>
-                <span class="slider"></span>
-            </label>
-        </div>
-    </nav>
+    
 
     <div class="header-section">
         <h1 style="text-align: center;">AI image generate <span style="color:#d3b610">Prompt</span></h1>
@@ -1205,52 +1191,11 @@
         </div>
     </div>
 
-    <section class="social-hacker-container">
-        <a href="https://www.tiktok.com/@ceylonedits.lk" class="social-hacker-link" target="_blank" title="TikTok">
-            <i class="fa-brands fa-tiktok"></i>
-        </a>
-        <a href="https://www.facebook.com/janiruhansaga" class="social-hacker-link" target="_blank" title="Facebook">
-            <i class="fa-brands fa-facebook-f"></i>
-        </a>
-        <a href="https://www.instagram.com/janiruhansaga/" class="social-hacker-link" target="_blank" title="Instagram">
-            <i class="fa-brands fa-instagram"></i>
-        </a>
-        <a href="https://whatsapp.com/channel/0029VbBx2Y75kg7DlgHl8109" class="social-hacker-link" target="_blank" title="WhatsApp Channel">
-            <i class="fa-brands fa-whatsapp"></i>
-        </a>
-    </section>
+    
 
-    <footer>
-        <p>
-            &copy; 2025 Janiru Hansaga. All Rights Reserved.
-            <a href="admin.html" class="admin-link"><i class="fa-solid fa-lock"></i> Admin</a>
-        </p>
-    </footer>
+    
 
     <script>
-        // --- 1. DARK/LIGHT MODE LOGIC ---
-        const toggleSwitch = document.getElementById('modeToggle');
-        const body = document.body;
-        const currentTheme = localStorage.getItem('theme');
-
-        if (currentTheme === 'light') {
-            body.classList.add('light-mode');
-            toggleSwitch.checked = false;
-        } else {
-            body.classList.remove('light-mode');
-            toggleSwitch.checked = true;
-        }
-
-        toggleSwitch.addEventListener('change', function () {
-            if (this.checked) {
-                body.classList.remove('light-mode');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.classList.add('light-mode');
-                localStorage.setItem('theme', 'light');
-            }
-        });
-
         // --- 2. PAGINATION LOGIC ---
         document.addEventListener('DOMContentLoaded', function () {
             const cards = document.querySelectorAll('.blog-card');
@@ -1316,6 +1261,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script src="music.js"></script>
+</main>
+<script src="components.js"></script>
 </body>
 
 </html>
