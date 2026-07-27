@@ -7,8 +7,7 @@ const navbarHTML = `
             <li><a href="prompt.html">Prompt</a></li>
             <li><a href="post.html">Post</a></li>
             <li><a href="janiruonline.html">MY Tool</a></li>
-            <li><a href="google-opal.html">GOOGLE OPAL</a></li>
-            <li><a href="https://janiruhansaga.github.io/CARGAME.3D/">Game</a></li>
+            <li><a href="https://pastpaperslk.lovable.app/" target="_blank">Past Papers</a></li>
             <li><a href="download.html">Download</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li class="theme-switch-wrapper">
