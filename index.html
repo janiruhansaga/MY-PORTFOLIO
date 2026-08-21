@@ -4,107 +4,362 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Janiru Hansaga | Portfolio</title>
+    <title>Janiru Hansaga | Creative Developer & Digital Architect</title>
+    <meta name="description"
+        content="Portfolio of Janiru Hansaga — Creative developer engineering cinematic web applications, dynamic interactions, and high-performance digital products.">
     <link rel="icon" type="image/x-icon" href="favicon.png">
-    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts & FontAwesome -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&family=Rajdhani:wght@400;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- GSAP & ScrollTrigger Animation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 
 <body>
 
-    <!-- Magical Energy Background Elements -->
-    <div class="magical-energy energy-1"></div>
-    <div class="magical-energy energy-2"></div>
-    <div class="magical-energy energy-3"></div>
-    <div class="magical-energy energy-4"></div>
+    <!-- Custom Desktop Cursor -->
+    <div class="custom-cursor" id="custom-cursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+        <span class="cursor-text" id="cursor-text"></span>
+    </div>
+
     <main id="main-content">
 
-
-
-        <header class="hero">
-            <div class="hero-content">
-                <h3>Hello, I am</h3>
-                <h1><span class="typing"></span></h1>
-                <p>I bridge the gap between lines of code and artistic concepts.
-                    My world exists between technology and art—building web applications while bringing digital
-                    characters
-                    like the <strong>'Urban Panther'</strong> to life.</p>
-                <a href="janiruonline.html" class="btn">View My Work</a>
-            </div>
-            <div class="hero-image">
-                <img src="hero.png" alt="Janiru Hansaga">
-            </div>
-        </header>
-
-        <section class="ai-section">
-            <div class="ai-container">
-                <div class="ai-image-box">
-                    <img src="panther1.jpeg" alt="AI Character Main" class="ai-img-main">
-                    <img src="panther2.jpeg" alt="AI Character Secondary" class="ai-img-secondary">
-                    <img src="panther3.png" alt="AI Character Small" class="ai-img-small">
+        <!-- 01 HERO SECTION (Full-Screen Pinned Canvas Sequence) -->
+        <div class="hero-scroll-container" id="hero-scroll-track">
+            <header class="hero hero-sticky" id="hero-pinned-viewport">
+                <!-- Full-Screen Animated Canvas Layer -->
+                <div class="hero-canvas-background">
+                    <canvas id="hero-canvas"></canvas>
                 </div>
 
-                <div class="ai-content-box">
-                    <h2>Meet <span class="highlight">Blackpanth AI</span></h2>
-                    <h3>Digital Identity Experiment</h3>
-                    <p>
-                        More than just an avatar, BlackPanther is an experiment in digital identity. Powered by advanced
-                        machine learning algorithms, this character allows me to explore the frontiers of digital art
-                        and
-                        media. It stands as a symbol of innovation in the Sri Lankan tech space.
+                <!-- Dark Cinematic Overlay Gradient -->
+                <div class="hero-overlay"></div>
+
+                <!-- Hero Content (Initial Intro Card) -->
+                <div class="hero-content" id="hero-text-content">
+                    <span class="hero-label">CREATIVE DEVELOPER &amp; DIGITAL ARCHITECT</span>
+                    <h1 class="hero-title"><span class="typing"></span></h1>
+                    <p class="hero-desc">
+                        Engineering immersive web applications, dynamic interactions, and high-performance digital
+                        products at the intersection of technology and design.
                     </p>
-                    <a href="https://www.tiktok.com/@blackpanthai.lk" class="btn">MY Tiktok</a>
+                    <div class="hero-cta-group">
+                        <a href="#work" class="btn cursor-hover-trigger" data-cursor="EXPLORE">View Selected Work <i
+                                class="fa-solid fa-arrow-right-long"></i></a>
+                        <a href="#contact" class="btn btn-secondary cursor-hover-trigger" data-cursor="CONTACT">Get In
+                            Touch <i class="fa-solid fa-paper-plane"></i></a>
+                    </div>
+                </div>
+
+                <!-- Scroll-Synced Cinematic Typography Overlay Layer -->
+                <div class="cinematic-text-overlay" id="cinematic-text-overlay">
+                    <!-- Scene 01 -->
+                    <div class="cinematic-scene scene-1" id="scene-1">
+                        <span class="scene-label">DESIGN × CODE × TECHNOLOGY</span>
+                        <h2 class="scene-heading">CREATIVE<br>DEVELOPER</h2>
+                        <div class="scene-accent-line"></div>
+                        <span class="scene-subtext">JANIRU HANSAGA PORTFOLIO</span>
+                    </div>
+
+                    <!-- Scene 02 -->
+                    <div class="cinematic-scene scene-2" id="scene-2">
+                        <span class="scene-label">CREATIVE DIRECTION</span>
+                        <h2 class="scene-heading">BUILDING<br>DIGITAL<br>EXPERIENCES.</h2>
+                        <div class="scene-accent-line"></div>
+                        <span class="scene-subtext">WEB • AI • 3D • INTERACTIVE</span>
+                    </div>
+
+                    <!-- Scene 03 -->
+                    <div class="cinematic-scene scene-3" id="scene-3">
+                        <span class="scene-label">FROM CONCEPT TO EXPERIENCE</span>
+                        <h2 class="scene-heading">TURNING<br>IDEAS<br>INTO REALITY.</h2>
+                        <div class="scene-accent-line"></div>
+                        <span class="scene-subtext">ENGINEERING MODERN WEB APPLICATIONS</span>
+                    </div>
+
+                    <!-- Scene 04 -->
+                    <div class="cinematic-scene scene-4" id="scene-4">
+                        <span class="scene-label">CREATIVE TECHNOLOGY</span>
+                        <h2 class="scene-heading">CODE.<br>CREATE.<br>INNOVATE.</h2>
+                        <div class="scene-accent-line"></div>
+                        <span class="scene-subtext">HIGH PERFORMANCE ARCHITECTURE</span>
+                    </div>
+
+                    <!-- Scene 05 -->
+                    <div class="cinematic-scene scene-5" id="scene-5">
+                        <span class="scene-label">PANTHER PORTFOLIO</span>
+                        <h2 class="scene-heading">WELCOME<br>TO MY<br>WORLD.</h2>
+                        <div class="scene-accent-line"></div>
+                        <span class="scene-subtext">EXPLORE SELECTED WORK</span>
+                    </div>
+                </div>
+
+                <!-- Scroll Down Indicator -->
+                <div class="scroll-indicator">
+                    <span>SCROLL TO EXPLORE</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </header>
+        </div>
+
+        <!-- 02 ABOUT SECTION -->
+        <section class="about-section" id="about">
+            <div class="section-container">
+                <span class="section-tag">01 / WHO I AM</span>
+                <h2 class="section-heading reveal-on-scroll">BRIDGING CODE &amp; ARTISTIC VISION</h2>
+
+                <div class="about-grid">
+                    <div class="about-text-content reveal-on-scroll">
+                        <h3 class="about-statement">
+                            "I BUILD DIGITAL EXPERIENCES AT THE INTERSECTION OF <span>INTERACTION, DESIGN, AND ADVANCED
+                                TECHNOLOGY</span>."
+                        </h3>
+                        <p class="about-paragraph">
+                            I am a Sri Lankan creative developer focused on engineering memorable, high-performance web
+                            applications. My work spans interactive canvas animations, modern dark-mode user interfaces,
+                            and scalable frontend architectures.
+                        </p>
+                        <div class="about-stats-grid">
+                            <div class="stat-item cursor-hover-trigger" data-cursor="EXPERIENCE">
+                                <span class="stat-number">03+</span>
+                                <span class="stat-label">Years Experience</span>
+                            </div>
+                            <div class="stat-item cursor-hover-trigger" data-cursor="PRODUCTS">
+                                <span class="stat-number">20+</span>
+                                <span class="stat-label">Digital Products</span>
+                            </div>
+                            <div class="stat-item cursor-hover-trigger" data-cursor="QUALITY">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">Dedication</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-visual-box reveal-on-scroll cursor-hover-trigger" data-cursor="CREATIVE">
+                        <img src="my about.png" alt="Janiru Hansaga Portrait" class="about-img">
+                        <div class="visual-glass-overlay"></div>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- 03 EXPERTISE / SKILLS SECTION (Editorial Numbered List) -->
+        <section class="expertise-section" id="expertise">
+            <div class="section-container">
+                <span class="section-tag">02 / WHAT I DO</span>
+                <h2 class="section-heading reveal-on-scroll">CORE SPECIALIZATIONS</h2>
+
+                <div class="editorial-list">
+                    <div class="editorial-item reveal-on-scroll cursor-hover-trigger" data-cursor="DEVELOP">
+                        <span class="item-num">01</span>
+                        <div class="item-details">
+                            <h3>WEB DEVELOPMENT &amp; ARCHITECTURE</h3>
+                            <p>Building lightning-fast, responsive web applications using HTML5, modern JavaScript,
+                                component architectures, and clean maintainable APIs.</p>
+                        </div>
+                        <span class="item-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+
+                    <div class="editorial-item reveal-on-scroll cursor-hover-trigger" data-cursor="ANIMATE">
+                        <span class="item-num">02</span>
+                        <div class="item-details">
+                            <h3>CREATIVE TECHNOLOGY &amp; MOTION</h3>
+                            <p>Crafting scroll-driven canvas animations, frame playback sequences, interactive
+                                micro-animations, and 60fps hardware-accelerated transitions.</p>
+                        </div>
+                        <span class="item-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+
+                    <div class="editorial-item reveal-on-scroll cursor-hover-trigger" data-cursor="DESIGN">
+                        <span class="item-num">03</span>
+                        <div class="item-details">
+                            <h3>UI/UX &amp; DIGITAL PRODUCT DESIGN</h3>
+                            <p>Designing sleek dark-mode interfaces, glassmorphism visual systems, fluid typography
+                                scale, and intuitive navigation flows.</p>
+                        </div>
+                        <span class="item-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+
+                    <div class="editorial-item reveal-on-scroll cursor-hover-trigger" data-cursor="ENGINEER">
+                        <span class="item-num">04</span>
+                        <div class="item-details">
+                            <h3>AI &amp; MACHINE LEARNING INTEGRATION</h3>
+                            <p>Integrating generative AI models, smart media pipelines, automated content generators,
+                                and custom browser tooling scripts.</p>
+                        </div>
+                        <span class="item-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04 FEATURED PROJECT SECTION -->
+        <section class="featured-section" id="featured">
+            <div class="section-container">
+                <span class="section-tag">03 / FEATURED PROJECT</span>
+
+                <div class="featured-card reveal-on-scroll cursor-hover-trigger" data-cursor="LAUNCH TOOLKIT">
+                    <div class="featured-visual">
+                        <img src="1.png" alt="Janiru Online Toolkit Application" class="featured-img">
+                        <div class="featured-overlay-gradient"></div>
+                    </div>
+                    <div class="featured-info">
+                        <span class="featured-badge">WEB APP / TOOLKIT</span>
+                        <h2 class="featured-title">JANIRU ONLINE TOOLKIT</h2>
+                        <p class="featured-desc">
+                            A powerful browser-based web suite engineered for automated media processing, utility
+                            workflows, and content generator scripts.
+                        </p>
+                        <div class="tech-tags">
+                            <span>JavaScript</span>
+                            <span>HTML5 Canvas</span>
+                            <span>CSS Grid</span>
+                            <span>Web API</span>
+                        </div>
+                        <a href="janiruonline.html" class="btn">Launch Application <i
+                                class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05 SELECTED WORKS SECTION -->
+        <section class="works-section" id="work">
+            <div class="section-container">
+                <span class="section-tag">04 / SELECTED WORK</span>
+                <h2 class="section-heading reveal-on-scroll">CRAFTED DIGITAL PROJECTS</h2>
+
+                <div class="works-grid">
+                    <!-- Project 01 -->
+                    <div class="work-card reveal-on-scroll cursor-hover-trigger" data-cursor="VIEW SUITE">
+                        <div class="work-img-wrapper">
+                            <img src="icon.png" alt="JHP Capture Suite" class="work-img">
+                        </div>
+                        <div class="work-details">
+                            <span class="work-num">PROJECT 01</span>
+                            <h3>JHP CAPTURE SUITE</h3>
+                            <p>High-efficiency desktop application for screen recording, snapshot capture, and media
+                                export workflows.</p>
+                            <div class="work-tags">
+                                <span>Desktop App</span>
+                                <span>Electron</span>
+                                <span>Media API</span>
+                            </div>
+                            <a href="download.html" class="work-link">Download Suite <i
+                                    class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Project 02 -->
+                    <div class="work-card reveal-on-scroll cursor-hover-trigger" data-cursor="VIEW VAULT">
+                        <div class="work-img-wrapper">
+                            <img src="safebox.png" alt="SafeBox Security Vault" class="work-img">
+                        </div>
+                        <div class="work-details">
+                            <span class="work-num">PROJECT 02</span>
+                            <h3>SAFEBOX SECURITY VAULT</h3>
+                            <p>Encrypted data management vault designed for secure offline credential storage and
+                                privacy protection.</p>
+                            <div class="work-tags">
+                                <span>Security</span>
+                                <span>Encryption</span>
+                                <span>Offline Vault</span>
+                            </div>
+                            <a href="download.html" class="work-link">Download Vault <i
+                                    class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06 ACADEMIC JOURNEY SECTION -->
         <section class="education-section" id="education">
-            <h2 class="section-title">My <span class="highlight">Education</span></h2>
+            <div class="section-container">
+                <span class="section-tag">05 / ACADEMIC JOURNEY</span>
+                <h2 class="section-heading reveal-on-scroll">EDUCATION &amp; MILESTONES</h2>
 
-            <div class="edu-container">
-                <div class="edu-box">
-                    <div class="edu-img">
-                        <img src="images.jpg" alt="Dharmasoka College">
+                <div class="edu-container">
+                    <div class="edu-box reveal-on-scroll cursor-hover-trigger" data-cursor="2012-2018">
+                        <div class="edu-img">
+                            <img src="images.png" alt="Dharmasoka College Crest">
+                        </div>
+                        <div class="edu-content">
+                            <span class="edu-date">2012 — 2018</span>
+                            <h3>Dharmasoka College</h3>
+                            <p>Primary Education (Grade 1 to 5). Foundation in logic, mathematics, and early technology
+                                exploration.</p>
+                        </div>
                     </div>
-                    <div class="edu-content">
-                        <span class="edu-date">2012-2018</span>
-                        <h3>Dharmasoka College</h3>
-                        <p>Primary education (Grade 1 to 5).</p>
-                    </div>
-                </div>
 
-                <div class="edu-box">
-                    <div class="edu-img">
-                        <img src="President's_College_Maharagama_Crest.png" alt="Presidents College">
+                    <div class="edu-box reveal-on-scroll cursor-hover-trigger" data-cursor="2019-2025">
+                        <div class="edu-img">
+                            <img src="President's_College_Maharagama_Crest.png" alt="President's College Crest">
+                        </div>
+                        <div class="edu-content">
+                            <span class="edu-date">2019 — 2025</span>
+                            <h3>President's College</h3>
+                            <p>Secondary Education (Grade 6 to 11). Advanced ICT studies, web programming, and creative
+                                multimedia projects.</p>
+                        </div>
                     </div>
-                    <div class="edu-content">
-                        <span class="edu-date">2019-2025</span>
-                        <h3>President's College</h3>
-                        <p>Secondary education (Grade 6 to 11).</p>
-                    </div>
-                </div>
 
-                <div class="edu-box">
-                    <div class="edu-img">
-                        <img src="Crest_of_Nalanda_College.png" alt="Nalanda College">
-                    </div>
-                    <div class="edu-content">
-                        <span class="edu-date">2025-Present</span>
-                        <h3>Nalanda College</h3>
-                        <p>Currently studying in the Commerce stream for A/Ls.</p>
+                    <div class="edu-box reveal-on-scroll cursor-hover-trigger" data-cursor="2025-PRESENT">
+                        <div class="edu-img">
+                            <img src="Crest_of_Nalanda_College.png" alt="Nalanda College Crest">
+                        </div>
+                        <div class="edu-content">
+                            <span class="edu-date">2025 — Present</span>
+                            <h3>Nalanda College</h3>
+                            <p>Currently pursuing G.C.E. Advanced Level in Commerce Stream, combining business strategy
+                                with software innovation.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- 07 PERSONAL PHILOSOPHY STATEMENT SECTION -->
+        <section class="philosophy-section" id="philosophy">
+            <div class="section-container">
+                <span class="section-tag">06 / PHILOSOPHY</span>
+                <div class="statement-wrapper reveal-on-scroll">
+                    <h2 class="statement-line">I DON'T JUST BUILD WEBSITES.</h2>
+                    <h2 class="statement-line highlight-line">I ENGINEER EXPERIENCES.</h2>
+                </div>
+            </div>
+        </section>
 
+        <!-- 08 CONTACT SECTION -->
+        <section class="contact-section" id="contact">
+            <div class="section-container">
+                <span class="section-tag">07 / GET IN TOUCH</span>
+                <h2 class="contact-title reveal-on-scroll">LET'S BUILD SOMETHING EXTRAORDINARY.</h2>
+                <p class="contact-subtitle reveal-on-scroll">Have an exciting project, creative concept, or technical
+                    collaboration in mind? Reach out and let's bring it to life.</p>
 
+                <div class="contact-actions reveal-on-scroll">
+                    <a href="contact.html" class="btn cursor-hover-trigger" data-cursor="SEND">Send Message <i
+                            class="fa-solid fa-paper-plane"></i></a>
+                    <a href="https://whatsapp.com/channel/0029VbBx2Y75kg7DlgHl8109"
+                        class="btn btn-secondary cursor-hover-trigger" target="_blank" data-cursor="WHATSAPP">Join
+                        Channel <i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inline Typing Effect Script -->
         <script>
-            // Typing Effect
-            const text = "Janiru Hansaga";
+            const text = "JANIRU HANSAGA";
             const typingElement = document.querySelector(".typing");
             let index = 0;
             let isDeleting = false;
@@ -113,10 +368,10 @@
                 if (!typingElement) return;
                 typingElement.textContent = text.substring(0, index);
                 let speed = 150;
-                if (isDeleting) { index--; speed = 100; } else { index++; }
+                if (isDeleting) { index--; speed = 90; } else { index++; }
 
                 if (!isDeleting && index === text.length + 1) {
-                    isDeleting = true; speed = 2000;
+                    isDeleting = true; speed = 2500;
                 } else if (isDeleting && index === 0) {
                     isDeleting = false; speed = 500;
                 }
@@ -125,10 +380,11 @@
 
             document.addEventListener("DOMContentLoaded", typeEffect);
         </script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
         <script src="music.js"></script>
+        <script src="hero-animation.js"></script>
     </main>
+
     <script src="components.js"></script>
 </body>
 

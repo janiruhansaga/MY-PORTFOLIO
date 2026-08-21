@@ -4,156 +4,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download | Janiru Hansaga</title>
+    <title>Downloads | Janiru Hansaga</title>
     <link rel="icon" type="image/x-icon" href="favicon.png">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .download-section {
-            padding: 80px 10%;
-            min-height: 90vh;
-            display: flex;
-            align-items: stretch;
-            align-content: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 40px;
-        }
-
-        .download-container {
-            background: var(--nav-bg);
-            backdrop-filter: blur(10px);
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: var(--box-shadow);
-            border: 1px solid var(--border-color);
-            max-width: 450px;
-            width: 100%;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .download-icon {
-            font-size: 5rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
-        .download-title {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        .download-desc {
-            color: var(--sub-text);
-            margin-bottom: 40px;
-            line-height: 1.6;
-            flex-grow: 1;
-        }
-    </style>
+    
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- GSAP Animation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 
 <body>
-    <!-- Magical Energy Background Elements -->
-    <div class="magical-energy energy-1"></div>
-    <div class="magical-energy energy-2"></div>
-    <div class="magical-energy energy-3"></div>
-    <div class="magical-energy energy-4"></div>
-<main id="main-content">
 
+    <!-- Custom Desktop Cursor -->
+    <div class="custom-cursor" id="custom-cursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+        <span class="cursor-text" id="cursor-text"></span>
+    </div>
 
-    
+    <main id="main-content">
 
-    <section class="download-section">
-        <div class="download-container">
-            <div class="download-icon">
-                <img src="icon.png" alt="JHP Capture Logo"
-                    style="width: 150px; height: 150px; object-fit: contain; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+        <section class="works-section" style="padding-top: 140px;">
+            <div class="section-container">
+                <span class="section-tag">DOWNLOADABLE PRODUCTS</span>
+                <h2 class="section-heading reveal-on-scroll">DESKTOP SOFTWARE &amp; UTILITIES</h2>
+
+                <div class="works-grid">
+                    <!-- Product 01 -->
+                    <div class="work-card reveal-on-scroll cursor-hover-trigger" data-cursor="DOWNLOAD">
+                        <div class="work-img-wrapper" style="display: flex; align-items: center; justify-content: center; background: #08080C;">
+                            <img src="icon.png" alt="JHP Capture Logo" style="width: 140px; height: 140px; object-fit: contain;">
+                        </div>
+                        <div class="work-details">
+                            <span class="work-num">VERSION 1.0.0</span>
+                            <h3>JHP CAPTURE SUITE</h3>
+                            <p>Get the latest version of JHP Capture. Capture your screen, record audio, and export media with ease.</p>
+                            <div class="work-tags">
+                                <span>Screen Record</span>
+                                <span>Snapshot</span>
+                                <span>Desktop App</span>
+                            </div>
+                            <a href="JHP capture Setup 1.0.0.exe" class="btn" download style="width: 100%;">Download Now <i class="fa-solid fa-download"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Product 02 -->
+                    <div class="work-card reveal-on-scroll cursor-hover-trigger" data-cursor="DOWNLOAD">
+                        <div class="work-img-wrapper" style="display: flex; align-items: center; justify-content: center; background: #08080C;">
+                            <img src="Untitled design (1).png" alt="SafeBox Logo" style="width: 140px; height: 140px; object-fit: contain;">
+                        </div>
+                        <div class="work-details">
+                            <span class="work-num">VERSION 1.0.0</span>
+                            <h3>SAFEBOX SECURITY VAULT</h3>
+                            <p>Secure your important files and credentials with ease using SafeBox. Keep your data safe and offline.</p>
+                            <div class="work-tags">
+                                <span>Security</span>
+                                <span>Encryption</span>
+                                <span>Vault</span>
+                            </div>
+                            <a href="safebox Setup 1.0.0.exe" class="btn" download style="width: 100%;">Download Now <i class="fa-solid fa-download"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Product 03 -->
+                    <div class="work-card reveal-on-scroll cursor-hover-trigger" data-cursor="DOWNLOAD">
+                        <div class="work-img-wrapper" style="display: flex; align-items: center; justify-content: center; background: #08080C;">
+                            <img src="logo image.png" alt="Phone Extractor Logo" style="width: 140px; height: 140px; object-fit: contain;">
+                        </div>
+                        <div class="work-details">
+                            <span class="work-num">VERSION 1.0.0</span>
+                            <h3>PHONE NUMBER EXTRACTOR</h3>
+                            <p>A powerful tool designed to effortlessly extract WhatsApp numbers from screenshots into organized Excel files.</p>
+                            <div class="work-tags">
+                                <span>OCR Utility</span>
+                                <span>Excel Export</span>
+                                <span>Automation</span>
+                            </div>
+                            <a href="Phone Number Extractor Setup 1.0.0.exe" class="btn" download style="width: 100%;">Download Now <i class="fa-solid fa-download"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h2 class="download-title">Download <span class="highlight">JHP Capture</span></h2>
-            <p class="download-desc">
-                Get the latest version of JHP Capture. Capture your screen, record audio, and more with ease.
-                <br>Version: 1.0.0
-            </p>
-            <a href="JHP capture Setup 1.0.0.exe" class="btn" download>Download Now</a>
-        </div>
+        </section>
 
-        <div class="download-container">
-            <div class="download-icon">
-                <img src="Untitled design (1).png" alt="SafeBox Logo"
-                    style="width: 150px; height: 150px; object-fit: contain; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
-            </div>
-            <h2 class="download-title">Download <span class="highlight">SafeBox</span></h2>
-            <p class="download-desc">
-                Secure your important files with ease using SafeBox. Keep your data safe and accessible only to you.
-                <br>Version: 1.0.0
-            </p>
-            <a href="safebox Setup 1.0.0.exe" class="btn" download>Download Now</a>
-        </div>
+        <script src="music.js"></script>
+        <script src="hero-animation.js"></script>
+    </main>
 
-        <div class="download-container">
-            <div class="download-icon">
-                <img src="logo image.png" alt="Phone Extractor Logo"
-                    style="width: 150px; height: 150px; object-fit: contain; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
-            </div>
-            <h2 class="download-title">Download <span class="highlight">Phone Extractor</span></h2>
-            <p class="download-desc">
-                A powerful tool designed to effortlessly extract WhatsApp numbers. Simply provide screenshots containing
-                WhatsApp numbers, and the tool will instantly extract and compile them into a neatly organized Excel
-                file for you.
-                <br>Version: 1.0.0
-            </p>
-            <a href="Phone Number Extractor Setup 1.0.0.exe" class="btn" download>Download Now</a>
-        </div>
-    </section>
-
-    
-
-    
-
-    <script>
-        // Dark Mode Logic
-        const toggleSwitch = document.querySelector('#checkbox');
-        const currentTheme = localStorage.getItem('theme');
-
-        if (currentTheme) {
-            document.body.classList.add(currentTheme);
-            if (currentTheme === 'dark-mode') {
-                toggleSwitch.checked = true;
-            }
-        }
-
-        function switchTheme(e) {
-            if (e.target.checked) {
-                document.body.classList.add('dark-mode');
-                localStorage.setItem('theme', 'dark-mode');
-            } else {
-                document.body.classList.remove('dark-mode');
-                localStorage.setItem('theme', 'light');
-            }
-        }
-        toggleSwitch.addEventListener('change', switchTheme, false);
-
-        // Mobile Menu
-        function toggleMenu() {
-            const nav = document.getElementById("navLinks");
-            nav.classList.toggle("active");
-
-            const icon = document.querySelector(".hamburger i");
-            if (nav.classList.contains("active")) {
-                icon.classList.remove("fa-bars");
-                icon.classList.add("fa-xmark");
-            } else {
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
-            }
-        }
-    </script>
-    <script src="music.js"></script>
-</main>
-<script src="components.js"></script>
+    <script src="components.js"></script>
 </body>
 
 </html>

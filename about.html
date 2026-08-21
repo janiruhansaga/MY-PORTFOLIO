@@ -4,109 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me | Janiru Hansaga</title>
+    <title>About | Janiru Hansaga</title>
     <link rel="icon" type="image/x-icon" href="favicon.png">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- GSAP Animation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 
 <body>
-    <!-- Magical Energy Background Elements -->
-    <div class="magical-energy energy-1"></div>
-    <div class="magical-energy energy-2"></div>
-    <div class="magical-energy energy-3"></div>
-    <div class="magical-energy energy-4"></div>
-<main id="main-content">
 
+    <!-- Custom Desktop Cursor -->
+    <div class="custom-cursor" id="custom-cursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+        <span class="cursor-text" id="cursor-text"></span>
+    </div>
 
-    
+    <main id="main-content">
 
-    <section class="about-section">
-        <div class="about-container">
+        <section class="about-section" style="padding-top: 140px;">
+            <div class="section-container">
+                <span class="section-tag">01 / ABOUT ME</span>
+                <h2 class="section-heading reveal-on-scroll">TECH ENTENTHUSIAST &amp; CREATIVE DEVELOPER</h2>
 
-            <div class="about-img-wrapper">
-                <img src="my about.png" alt="Janiru Hansaga">
-            </div>
+                <div class="about-grid">
+                    <div class="about-visual-box reveal-on-scroll cursor-hover-trigger" data-cursor="JANIRU">
+                        <img src="my about.png" alt="Janiru Hansaga Portrait" class="about-img">
+                        <div class="visual-glass-overlay"></div>
+                    </div>
 
-            <div class="about-content">
-                <h2>About <span class="highlight">Me</span></h2>
-                <span class="subtitle">Tech Enthusiast & Creative Developer</span>
+                    <div class="about-text-content reveal-on-scroll">
+                        <h3 class="about-statement">
+                            Hello! I'm <span>Janiru Hansaga</span>, a developer who loves blending logic with creativity.
+                        </h3>
+                        <p class="about-paragraph">
+                            My passion lies at the intersection of <strong>Web Development</strong>, <strong>Creative Technology</strong>, and <strong>Artificial Intelligence</strong>.
+                        </p>
+                        <p class="about-paragraph">
+                            I build custom web applications, dynamic canvas animations, and high-performance digital tools. Beyond standard development, I experiment with digital art, AI rap music generation, and digital character storytelling.
+                        </p>
 
-                <p>
-                    Hello! I'm <strong>Janiru Hansaga</strong>, a developer who loves blending logic with creativity.
-                    My passion lies at the intersection of <strong>Web Development</strong> and <strong>Artificial
-                        Intelligence</strong>.
-                </p>
-                <p>
-                    I build custom LMS solutions using Moodle and WordPress, and develop dynamic web applications with
-                    PHP and Node.js.
-                    Beyond coding, I experiment with digital art—from producing AI-generated rap music to creating
-                    digital characters like
-                    <strong>'Blackpanth AI'</strong>.
-                </p>
+                        <div class="tech-tags" style="margin-top: 24px;">
+                            <span>Web Development</span>
+                            <span>AI &amp; Machine Learning</span>
+                            <span>Creative Motion</span>
+                            <span>Node.js &amp; Web APIs</span>
+                        </div>
 
-                <div class="skills-grid">
-                    <div class="skill-tag">Web Development</div>
-                    <div class="skill-tag">AI & Machine Learning</div>
-                    <div class="skill-tag">AI video creating</VIdeo></div>
-                    <div class="skill-tag">Node.js</div>
+                        <div style="display: flex; gap: 16px; margin-top: 36px; flex-wrap: wrap;">
+                            <a href="contact.html" class="btn cursor-hover-trigger" data-cursor="CONTACT">Contact Me <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="janiruonline.html" class="btn btn-secondary cursor-hover-trigger" data-cursor="TOOLKIT">Explore Toolkit <i class="fa-solid fa-wrench"></i></a>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="btn-group">
-                    <a href="https://www.facebook.com/janiruofficial" class="btn">Contact Me</a>
-                    <a href="janiruonline.html" class="btn-secondary">My Work</a>
-                </div>
             </div>
+        </section>
 
-        </div>
-    </section>
-    
+        <script src="music.js"></script>
+        <script src="hero-animation.js"></script>
+    </main>
 
-    
-    <script>
-        // Dark Mode Logic
-        const toggleSwitch = document.querySelector('#checkbox');
-        const currentTheme = localStorage.getItem('theme');
-
-        if (currentTheme) {
-            document.body.classList.add(currentTheme);
-            if (currentTheme === 'dark-mode') {
-                toggleSwitch.checked = true;
-            }
-        }
-
-        function switchTheme(e) {
-            if (e.target.checked) {
-                document.body.classList.add('dark-mode');
-                localStorage.setItem('theme', 'dark-mode');
-            } else {
-                document.body.classList.remove('dark-mode');
-                localStorage.setItem('theme', 'light');
-            }
-        }
-        toggleSwitch.addEventListener('change', switchTheme, false);
-
-        // Mobile Menu
-        function toggleMenu() {
-            const nav = document.getElementById("navLinks");
-            nav.classList.toggle("active");
-
-            const icon = document.querySelector(".hamburger i");
-            if (nav.classList.contains("active")) {
-                icon.classList.remove("fa-bars");
-                icon.classList.add("fa-xmark");
-            } else {
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
-            }
-        }
-    </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <script src="music.js"></script>
-</main>
-<script src="components.js"></script>
+    <script src="components.js"></script>
 </body>
 
 </html>
