@@ -6,7 +6,7 @@ const navbarHTML = `
             <li><a href="index.html#about" class="cursor-hover-trigger" data-cursor="ABOUT">About</a></li>
             <li><a href="index.html#expertise" class="cursor-hover-trigger" data-cursor="SKILLS">Expertise</a></li>
             <li><a href="index.html#work" class="cursor-hover-trigger" data-cursor="WORK">Work</a></li>
-            <li><a href="janiruonline.html" class="cursor-hover-trigger" data-cursor="TOOLKIT">Toolkit</a></li>
+            <li><a href="https://jhnexustoollk.vercel.app/"target="_blank" class="cursor-hover-trigger" data-cursor="TOOLKIT">Toolkit</a></li>
             <li><a href="download.html" class="cursor-hover-trigger" data-cursor="DOWNLOADS">Downloads</a></li>
             <li><a href="contact.html" class="cursor-hover-trigger" data-cursor="CONTACT">Contact</a></li>
         </ul>
